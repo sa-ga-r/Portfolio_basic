@@ -1,7 +1,8 @@
 from django.http import JsonResponse
+from django.shortcuts import render
 from .models import Project
 
-def home(request):
+def bio(request):
     data = {
         'name':'Sagar Bhalerao',
         'tagline' : 'Softwere Developer',
@@ -32,3 +33,6 @@ def contacts(request):
         }
     }
     return JsonResponse(data)
+
+def home(request):
+    return render(request, 'portfolio_app/index.html')
