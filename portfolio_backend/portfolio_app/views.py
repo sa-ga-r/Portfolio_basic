@@ -20,7 +20,7 @@ def about(request):
     return JsonResponse(data)
 
 def projects(request):
-    projects = Project.objects.all().values("title", "description", "links")
+    projects = Project.objects.all().values("title", "description", "link")
     return JsonResponse(list(projects), safe=False)
 
 def contacts(request):
