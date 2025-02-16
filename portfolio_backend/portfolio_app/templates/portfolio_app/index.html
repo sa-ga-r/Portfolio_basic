@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Portfolio</title>
+                <script>
+                        async function fetchProjects() {
+                                    const response = await fetch('/projects/');
+                                                const projects = await response.json();
+                                                            let output = "<h2>Projects</h2><ul>";
+                                                                        projects.forEach(project => {
+                                                                                        output += `<li><strong>${project.title}</strong>: ${project.description} (<a href="${project.link}" target="_blank">View</a>)</li>`;
+                                                                                                    });
+                                                                                                                output += "</ul>";
+                                                                                                                            document.getElementById("projects").innerHTML = output;
+                                                                                                                                    }
+                                                                                                                                            window.onload = fetchProjects;
+                                                                                                                                                </script>
+                                                                                                                                                </head>
+                                                                                                                                                <body>
+                                                                                                                                                    <nav>
+                                                                                                                                                            <h1>My Portfolio</h1>
+                                                                                                                                                                </nav>
+                                                                                                                                                                    <div id="projects">
+                                                                                                                                                                            <p>Loading projects...</p>
+                                                                                                                                                                                </div>
+                                                                                                                                                                                </body>
+                                                                                                                                                                                </html>
