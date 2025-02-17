@@ -37,5 +37,12 @@ def contacts(request):
     }
     return JsonResponse(data)
 
-def home(request):
+def index(request):
     return render(request, 'portfolio_app/index.html')
+
+def home(request):
+    data = {
+        'page' : 'Home',
+        'info' : 'Landing page',
+    }
+    return JsonResponse(data)
