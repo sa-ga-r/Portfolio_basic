@@ -4,6 +4,7 @@ from .models import Project
 
 def bio(request):
     data = {
+        'page' : 'Bio',
         'name':'Sagar Bhalerao',
         'tagline' : 'Softwere Developer',
         'contact_links' : {
@@ -15,6 +16,7 @@ def bio(request):
 
 def about(request):
     data = {
+        'page': 'About',
         'bio' : 'I am a passionate developer with knowledge of Python, Django, javascript and react.',
         'skills' : ["Python", "Django", "Javascript", "React"],
     }
@@ -26,6 +28,7 @@ def projects(request):
 
 def contacts(request):
     data = {
+        'page' : 'Contacts',
         'email' : 'sagar.bhalerao@yahoo.co.in',
         'socials' : {
             'twitter' : 'twitter.com/sagarbhalerao',
