@@ -1,24 +1,44 @@
-{% extends 'portfolio_app/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>JSON Viewer SPA</title>
+                <style>
+                        body { font-family: Arial, sans-serif; margin: 20px; padding: 0; }
+                                nav { background: #333; padding: 10px; }
+                                        nav ul { list-style: none; padding: 0; margin: 0; display: flex; }
+                                                nav ul li { margin-right: 20px; }
+                                                        nav ul li a { color: white; text-decoration: none; cursor: pointer; }
+                                                                #content { margin-top: 20px; white-space: pre-wrap; background: #f4f4f4; padding: 10px; border-radius: 5px; }
+                                                                    </style>
+                                                                    </head>
+                                                                    <body>
 
-{% block title %}Home - My Portfolio{% endblock %}
+                                                                        <!-- Navigation Bar -->
+                                                                            <nav>
+                                                                                    <ul>
+                                                                                                <li><a onclick="loadPage('home')">Home</a></li>
+                                                                                                            <li><a onclick="loadPage('about')">About</a></li>
+                                                                                                                        <li><a onclick="loadPage('projects')">Projects</a></li>
+                                                                                                                                    <li><a onclick="loadPage('contact')">Contact</a></li>
+                                                                                                                                                <li><a onclick="loadPage('bio')">Bio</a></li>
+                                                                                                                                                        </ul>
+                                                                                                                                                    </nav>
+                                                                                                                                                                    <div id="content">Click a link to load JSON data...</div>
 
-{% block content %}
-    <h2>My Projects</h2>
-        <div id="projects">
-                <p>Loading projects...</p>
-                    </div>
+                                                                                                                                                                        <script>
+                                                                                                                                                                                function loadPage(page) {
+                                                                                                                                                                                            fetch('/' + page + '/')
+                                                                                                                                                                                                            .then(response => response.json())
+                                                                                                                                                                                                                            .then(data => {
+                                                                                                                                                                                                                                                document.getElementById('content').textContent = JSON.stringify(data, null, 4); // Pretty-print JSON
+                                                                                                                                                                                                                                                                })
+                                                                                                                                                                                                                                                                                .catch(error => {
+                                                                                                                                                                                                                                                                                                    document.getElementById('content').textContent = "Error loading data.";
+                                                                                                                                                                                                                                                                                                                    });
+                                                                                                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                                                                                                </script>
 
-                        <script>
-                                async function fetchProjects() {
-                                            const response = await fetch('/projects/');
-                                                        const projects = await response.json();
-                                                                    let output = "<ul>";
-                                                                                projects.forEach(project => {
-                                                                                                output += `<li><strong>${project.title}</strong>: ${project.description} (<a href="${project.link}" target="_blank">View</a>)</li>`;
-                                                                                                            });
-                                                                                                                        output += "</ul>";
-                                                                                                                                    document.getElementById("projects").innerHTML = output;
-                                                                                                                                            }
-                                                                                                                                                    window.onload = fetchProjects;
-                                                                                                                                                        </script>
-                                                                                                                                                        {% endblock %}
+                                                                                                                                                                                                                                                                                                                                </body>
+                                                                                                                                                                                                                                                                                                                                </html>
